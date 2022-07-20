@@ -11,24 +11,12 @@ namespace Script.Object
         public override void Init()
         {
             bg = Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/bgMap.prefab"));
+            Component[] maps = bg.GetComponentsInChildren<Component>();
+            Debug.Log(maps);
         }
 
         public override void Update()
         {
-            if (Time.frameCount % 5 == 0)
-            {
-                return;
-            }
-
-            RollDown();
-        }
-
-        private void RollDown()
-        {
-            bg.transform.localPosition =
-                Vector3.MoveTowards(bg.transform.localPosition,
-                    new Vector3(bg.transform.localPosition.x, bg.transform.localPosition.y - 0.01F,
-                        bg.transform.localPosition.z), Time.deltaTime);
         }
     }
 }

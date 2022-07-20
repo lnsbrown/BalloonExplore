@@ -21,6 +21,11 @@ namespace Script
         public void Init()
         {
             Debug.Log("GameCore Init");
+            Debug.Log("Screen width:" + Screen.width);
+            Debug.Log("Screen height:" + Screen.height);
+
+            Application.targetFrameRate = 30;
+            Debug.Log("targetFrameRate:" + Application.targetFrameRate);
 
             this.AddManager(ManagerType.Animation);
             this.AddManager(ManagerType.Scene);
