@@ -7,7 +7,7 @@ using UnityEngine;
 // 游戏主场景入口
 public class Main : MonoBehaviour
 {
-    private static readonly GameCore _gameCore = new GameCore();
+    private static readonly GameCore _gameCore = GameCore.GetInstance();
 
     // Start is called before the first frame update
     void Start()

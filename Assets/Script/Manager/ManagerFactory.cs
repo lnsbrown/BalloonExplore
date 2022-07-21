@@ -1,4 +1,6 @@
-﻿namespace Script.Manager
+﻿using System;
+
+namespace Script.Manager
 {
     public class ManagerFactory
     {
@@ -7,20 +9,21 @@
          */
         public static IManager CreateManager(ManagerType managerType)
         {
-            if (managerType == ManagerType.Animation)
+            switch (managerType)
             {
-                return new AnimManager();
+                case ManagerType.Scene:
+                    return new SceneManager();
+                case ManagerType.UI:
+                    return new UIManager();
+                case ManagerType.Animation:
+                    return new AnimManager();
+                case ManagerType.Time:
+                    return new TimeManager();
+                case ManagerType.Config:
+                    return new ConfigManager();
+                default:
+                    return null;
             }
-            else if (managerType == ManagerType.Scene)
-            {
-                return new SceneManager();
-            }
-            else if (managerType == ManagerType.UI)
-            {
-                return new UIManager();
-            }
-
-            return null;
         }
     }
 }

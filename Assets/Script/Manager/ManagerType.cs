@@ -5,5 +5,7 @@
         Scene,
         UI,
         Animation,
+        Time,
+        Config,
     }
 }
