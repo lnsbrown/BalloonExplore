@@ -25,12 +25,12 @@ namespace Script
         {
             Application.targetFrameRate = 30;
 
-            this.AddManager(ManagerType.Config);
-            this.AddManager(ManagerType.Time);
-            this.AddManager(ManagerType.Animation);
-            this.AddManager(ManagerType.Scene);
-            this.AddManager(ManagerType.UI);
-            this.AddManager(ManagerType.Unit);
+            AddManager(ManagerType.Config);
+            AddManager(ManagerType.Time);
+            AddManager(ManagerType.Animation);
+            AddManager(ManagerType.Scene);
+            AddManager(ManagerType.UI);
+            AddManager(ManagerType.Unit);
 
             foreach (var manager in this.managerDic.Values)
             {

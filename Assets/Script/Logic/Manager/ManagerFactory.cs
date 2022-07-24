@@ -3,7 +3,7 @@ using Script.Logic.Manager;
 
 namespace Script.Manager
 {
-    public class ManagerFactory
+    public static class ManagerFactory
     {
         /**
          * 创建Manager
