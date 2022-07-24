@@ -7,7 +7,7 @@ namespace Script
 {
     public class GameCore
     {
-        private static GameCore INSTANCE = new GameCore();
+        private static readonly GameCore INSTANCE = new GameCore();
 
         public static GameCore GetInstance()
         {
@@ -18,19 +18,8 @@ namespace Script
         {
         }
 
-        private Dictionary<ManagerType, IManager> managerDic = new Dictionary<ManagerType, IManager>();
-
-        // 场景管理器
-        private SceneManager sceneManager;
-
-        // UI管理器
-        private UIManager uiManager;
-
-        // 动画管理器
-        private AnimManager animManager;
-
-        // 时间管理器
-        private TimeManager timeManager;
+        private readonly Dictionary<ManagerType, IManager> managerDic = new Dictionary<ManagerType, IManager>();
+        private readonly Dictionary<Type, ManagerType> managerTypeDic = new Dictionary<Type, ManagerType>();
 
         public void Init()
         {
@@ -41,6 +30,7 @@ namespace Script
             this.AddManager(ManagerType.Animation);
             this.AddManager(ManagerType.Scene);
             this.AddManager(ManagerType.UI);
+            this.AddManager(ManagerType.Unit);
 
             foreach (var manager in this.managerDic.Values)
             {
@@ -63,6 +53,7 @@ namespace Script
 
             // 添加到manager管理
             managerDic.Add(managerType, manager);
+            managerTypeDic.Add(manager.GetType(), managerType);
         }
 
         public void Update()
@@ -76,12 +67,39 @@ namespace Script
         /// <summary>
         /// 获取manager
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetManager<T>() where T : class, IManager
+        {
+            var type = typeof(T);
+            if (!managerTypeDic.ContainsKey(type))
+            {
+                return null;
+            }
+
+            var managerType = managerTypeDic[type];
+            if (!managerDic.ContainsKey(managerType))
+            {
+                return null;
+            }
+
+            return managerDic[managerType] as T;
+        }
+
+        /// <summary>
+        /// 获取manager
+        /// </summary>
         /// <param name="managerType"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T GetManager<T>(ManagerType managerType)
+        public T GetManager<T>(ManagerType managerType) where T : class, IManager
         {
-            return (T)managerDic[managerType];
+            if (!managerDic.ContainsKey(managerType))
+            {
+                return null;
+            }
+
+            return managerDic[managerType] as T;
         }
     }
 }

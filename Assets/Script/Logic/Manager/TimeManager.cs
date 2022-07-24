@@ -1,27 +1,30 @@
 ﻿using System;
+using Script.Logic.Manager;
 using UnityEngine;
 
 namespace Script.Manager
 {
-    public class TimeManager : IManager
+    public class TimeManager : BaseManager
     {
         // 当前时间戳
         private long curTimestamp;
 
         private float cachePeriod;
 
-        public void Init()
+        public TimeManager(ManagerType managerType) : base(managerType)
+        {
+        }
+
+        public override void Init()
         {
             Debug.Log("TimeManager Init");
             cachePeriod = Globals.configGlobal.cacheTimeMillSecond / 1000f;
             UpdateTimestamp();
         }
 
-        private long nextUpdateTime = 0;
+        private float updateTimeAcculate;
 
-        private float updateTimeAcculate = 0;
-
-        public void Update()
+        public override void Update()
         {
             updateTimeAcculate += Time.deltaTime;
             if (updateTimeAcculate >= cachePeriod)

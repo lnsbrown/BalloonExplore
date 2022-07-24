@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ScreenAdapter : MonoBehaviour
+public class ScreenAdapterComponent : MonoBehaviour
 {
     private const float DEFAULT_RATIO = 9f / 16f;
     private int m_ScreenWidth;
