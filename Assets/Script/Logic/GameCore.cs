@@ -23,20 +23,20 @@ namespace Script
 
         public void Init()
         {
-            Application.targetFrameRate = 30;
-
             AddManager(ManagerType.Config);
             AddManager(ManagerType.Time);
             AddManager(ManagerType.Animation);
             AddManager(ManagerType.Scene);
             AddManager(ManagerType.UI);
             AddManager(ManagerType.Unit);
+            AddManager(ManagerType.Input);
 
             foreach (var manager in this.managerDic.Values)
             {
                 manager.Init();
             }
 
+            Application.targetFrameRate = Globals.configGlobal.cacheTimeMillSecond;
             Debug.Log("GameCore Init");
             Debug.Log("Screen width:" + Screen.width);
             Debug.Log("Screen height:" + Screen.height);

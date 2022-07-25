@@ -11,7 +11,7 @@ namespace Script.Config
     {
         public static T Load<T>(string fileName)
         {
-            var jsonFile = Application.streamingAssetsPath + "/" + fileName + ".json";
+            var jsonFile = Application.streamingAssetsPath + "/json/" + fileName + ".json";
             string json = File.ReadAllText(jsonFile, Encoding.UTF8);
 
             if (string.IsNullOrEmpty(json))

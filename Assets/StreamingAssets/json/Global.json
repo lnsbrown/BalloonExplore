@@ -1,4 +1,5 @@
 ﻿{
+  "fixedFrameRate": 30,
   "cacheTimeMillSecond": 50,
   "useCacheTime": true
 }

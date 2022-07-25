@@ -8,5 +8,6 @@
         Time,
         Config,
         Unit,
+        Input
     }
 }

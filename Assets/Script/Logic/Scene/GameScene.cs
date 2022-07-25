@@ -12,7 +12,7 @@ namespace Script.Scene
         private GameUnit bgUnit;
 
         // 玩家
-        private GameUnit mainPlayer;
+        public GameUnit mainPlayer;
 
         // 单位管理器
         private UnitManager unitManager;

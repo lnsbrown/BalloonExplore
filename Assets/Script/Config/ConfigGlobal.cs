@@ -8,6 +8,11 @@ namespace Script.Config
         /// <summary>
         /// 
         /// </summary>
+        public int fixedFrameRate;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int cacheTimeMillSecond;
 
         /// <summary>

@@ -12,7 +12,19 @@ namespace Script.Object
     {
         private BalloonComponent balloonView;
 
-        private ConfigPlayer configPlayer;
+        public ConfigPlayer configPlayer;
+
+        // 水平加速度
+        private float horAccelerate;
+
+        // 当前水平速度
+        private float curHorSpeed;
+
+        // 操作向左
+        public bool operateLeft;
+
+        // 操作向右
+        public bool operateRight;
 
         protected override void InitGameObject()
         {
@@ -48,8 +60,50 @@ namespace Script.Object
 
         public override void Update()
         {
+            HorMove();
         }
 
+        private void updateHorAccelerate()
+        {
+            
+            // TODO 明天再搞
+        }
+
+        /// <summary>
+        /// 水平移动
+        /// </summary>
+        private void HorMove()
+        {
+            // 更新当前速度
+            curHorSpeed += horAccelerate * Time.deltaTime;
+
+            // 计算移动举例
+            var distance = curHorSpeed / 2 * Time.deltaTime;
+            if (distance == 0)
+            {
+                return;
+            }
+
+            // 调整位置
+            var transformLocalPosition = gameObject.transform.localPosition;
+            transformLocalPosition.x += distance;
+            // 判断左边界
+            transformLocalPosition.x =
+                Mathf.Max(transformLocalPosition.x, -Screen.width / 2 + configPlayer.balloonWidth / 2);
+            // 判断右边界
+            transformLocalPosition.x =
+                Mathf.Min(transformLocalPosition.x, Screen.width / 2 - configPlayer.balloonWidth / 2);
+
+            gameObject.transform.localPosition = transformLocalPosition;
+        }
+
+        /// <summary>
+        /// 更新水平加速度
+        /// </summary>
+        public void UpdateHorizonAcceleration(float horAccelerate)
+        {
+            this.horAccelerate = horAccelerate;
+        }
 
         /// <summary>
         /// 更换气球皮肤

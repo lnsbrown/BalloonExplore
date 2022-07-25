@@ -24,6 +24,8 @@ namespace Script.Manager
                     return new ConfigManager(managerType);
                 case ManagerType.Unit:
                     return new UnitManager(managerType);
+                case ManagerType.Input:
+                    return new InputManager(managerType);
                 default:
                     return null;
             }

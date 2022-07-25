@@ -7,7 +7,7 @@ namespace Script
 {
     public class SceneManager : BaseManager
     {
-        private GameScene gameScene;
+        public GameScene gameScene;
 
         public SceneManager(ManagerType managerType) : base(managerType)
         {
