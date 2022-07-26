@@ -8,6 +8,9 @@ namespace Script
         public static ConfigGlobal configGlobal =>
             GameCore.GetInstance().GetManager<ConfigManager>().configGlobal;
 
+        public static ConfigLayer configLayer =>
+            GameCore.GetInstance().GetManager<ConfigManager>().configLayer;
+
         /// <summary>
         /// 获取当前时间戳
         /// </summary>

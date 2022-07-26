@@ -12,6 +12,8 @@ namespace Script.Manager
         public ConfigGlobal configGlobal { get; private set; }
         public ConfigPlayer configPlayer { get; private set; }
 
+        public ConfigLayer configLayer { get; private set; }
+
         public ConfigManager(ManagerType managerType) : base(managerType)
         {
         }
@@ -23,6 +25,7 @@ namespace Script.Manager
             configBgMap = JsonConfig.Load<ConfigBgMap>("BgMap");
             configGlobal = JsonConfig.Load<ConfigGlobal>("Global");
             configPlayer = JsonConfig.Load<ConfigPlayer>("Player");
+            configLayer = JsonConfig.Load<ConfigLayer>("Layer");
         }
 
         public override void Update()

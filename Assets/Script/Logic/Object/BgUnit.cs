@@ -46,6 +46,11 @@ namespace Script.Object
             gameObject = Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(PrefabDefine.BG_MAP));
         }
 
+        protected override int GetSceneLayerIndex()
+        {
+            return Globals.configLayer.bgMap;
+        }
+
         public override void Init()
         {
             base.Init();
@@ -76,6 +81,7 @@ namespace Script.Object
                 var transformLocalPosition = mapObject.transform.localPosition;
                 transformLocalPosition.x = 0;
                 transformLocalPosition.y = Screen.height * index;
+                transformLocalPosition.z = unitSceneLayerIndex;
                 mapObject.transform.localPosition = transformLocalPosition;
             }
 

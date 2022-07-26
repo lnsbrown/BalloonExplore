@@ -31,6 +31,11 @@ namespace Script.Object
             gameObject = Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(PrefabDefine.PLAYER));
         }
 
+        protected override int GetSceneLayerIndex()
+        {
+            return Globals.configLayer.player;
+        }
+
         private GameObject balloon;
 
         public override void Init()
@@ -55,18 +60,40 @@ namespace Script.Object
             var transformLocalPosition = gameObject.transform.localPosition;
             transformLocalPosition.x = 0;
             transformLocalPosition.y = -Screen.height / 2 + configPlayer.balloonHoverHeight + balloonHeight / 2;
+            transformLocalPosition.z = unitSceneLayerIndex;
             gameObject.transform.localPosition = transformLocalPosition;
         }
 
         public override void Update()
         {
+            UpdateHorAccelerate();
             HorMove();
         }
 
-        private void updateHorAccelerate()
+        private void UpdateHorAccelerate()
         {
-            
-            // TODO 明天再搞
+            if ((operateLeft && operateRight) || (!operateLeft && !operateRight))
+            {
+                // 左右都按下或都没按下
+                if (curHorSpeed == 0)
+                {
+                    // 当前没速度，就保持静止不动
+                    return;
+                }
+
+                // 按移动方向反向加速
+                horAccelerate = curHorSpeed > 0 ? -configPlayer.blockAccelerate : configPlayer.blockAccelerate;
+            }
+            else if (operateLeft)
+            {
+                // 只按下左
+                horAccelerate = configPlayer.operateLeftAccelerate;
+            }
+            else if (operateRight)
+            {
+                // 只按下右
+                horAccelerate = configPlayer.operateRightAccelerate;
+            }
         }
 
         /// <summary>
@@ -88,21 +115,22 @@ namespace Script.Object
             var transformLocalPosition = gameObject.transform.localPosition;
             transformLocalPosition.x += distance;
             // 判断左边界
-            transformLocalPosition.x =
-                Mathf.Max(transformLocalPosition.x, -Screen.width / 2 + configPlayer.balloonWidth / 2);
+            if (transformLocalPosition.x <= -Screen.width / 2 + configPlayer.balloonWidth / 2)
+            {
+                // 走到头，速度归0
+                curHorSpeed = 0;
+                transformLocalPosition.x = -Screen.width / 2 + configPlayer.balloonWidth / 2;
+            }
+
             // 判断右边界
-            transformLocalPosition.x =
-                Mathf.Min(transformLocalPosition.x, Screen.width / 2 - configPlayer.balloonWidth / 2);
+            if (transformLocalPosition.x >= Screen.width / 2 - configPlayer.balloonWidth / 2)
+            {
+                // 走到头，速度归0
+                curHorSpeed = 0;
+                transformLocalPosition.x = Screen.width / 2 - configPlayer.balloonWidth / 2;
+            }
 
             gameObject.transform.localPosition = transformLocalPosition;
-        }
-
-        /// <summary>
-        /// 更新水平加速度
-        /// </summary>
-        public void UpdateHorizonAcceleration(float horAccelerate)
-        {
-            this.horAccelerate = horAccelerate;
         }
 
         /// <summary>

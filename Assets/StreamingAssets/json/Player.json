@@ -1,5 +1,5 @@
 ﻿{
-  "balloonWidth": 800,
+  "balloonWidth": 400,
   "balloonHoverHeight": 100,
   "operateLeftAccelerate": -1000,
   "operateRightAccelerate": 1000,
