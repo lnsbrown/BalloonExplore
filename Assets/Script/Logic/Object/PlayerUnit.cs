@@ -18,13 +18,49 @@ namespace Script.Object
         private float horAccelerate;
 
         // 当前水平速度
-        private float curHorSpeed;
+        private float curHorizontalSpeed;
+
+        // 当前垂直速度
+        private float curVerticalSpeed;
 
         // 操作向左
         public bool operateLeft;
 
         // 操作向右
         public bool operateRight;
+
+        // 状态
+        private StateEnum stateEnum;
+
+        // 状态
+        public enum StateEnum
+        {
+            // 停止中
+            STOPPED,
+
+            // 悬浮中
+            FLOATING,
+
+            // 悬停中
+            FLOAT_STOPPED,
+        }
+
+        /// <summary>
+        /// 进入状态
+        /// </summary>
+        /// <param name="stateEnum"></param>
+        public void EnterState(StateEnum stateEnum)
+        {
+            if (this.stateEnum == stateEnum)
+            {
+                return;
+            }
+
+            this.stateEnum = stateEnum;
+
+            // Debug.Log("Enter State:" + stateEnum);
+        }
+
 
         protected override void InitGameObject()
         {
@@ -62,12 +98,15 @@ namespace Script.Object
             transformLocalPosition.y = -Screen.height / 2 + configPlayer.balloonHoverHeight + balloonHeight / 2;
             transformLocalPosition.z = unitSceneLayerIndex;
             gameObject.transform.localPosition = transformLocalPosition;
+
+            EnterState(StateEnum.STOPPED);
         }
 
         public override void Update()
         {
             UpdateHorAccelerate();
-            HorMove();
+            HorizontalMove();
+            VerticalMove();
         }
 
         private void UpdateHorAccelerate()
@@ -75,14 +114,14 @@ namespace Script.Object
             if ((operateLeft && operateRight) || (!operateLeft && !operateRight))
             {
                 // 左右都按下或都没按下
-                if (curHorSpeed == 0)
+                if (curHorizontalSpeed == 0)
                 {
                     // 当前没速度，就保持静止不动
                     return;
                 }
 
                 // 按移动方向反向加速
-                horAccelerate = curHorSpeed > 0 ? -configPlayer.blockAccelerate : configPlayer.blockAccelerate;
+                horAccelerate = curHorizontalSpeed > 0 ? -configPlayer.blockAccelerate : configPlayer.blockAccelerate;
             }
             else if (operateLeft)
             {
@@ -96,16 +135,53 @@ namespace Script.Object
             }
         }
 
+        public void StartMove()
+        {
+            // 初始悬浮速度
+            curVerticalSpeed = configPlayer.initFloatSpeed;
+            EnterState(StateEnum.FLOATING);
+        }
+
+        /**
+         * 垂直移动
+         */
+        private void VerticalMove()
+        {
+            if (stateEnum != StateEnum.FLOATING)
+            {
+                return;
+            }
+
+            curVerticalSpeed += Time.deltaTime * this.configPlayer.blockFloatAccelerate;
+            if (curVerticalSpeed <= 0)
+            {
+                EnterState(StateEnum.FLOAT_STOPPED);
+                return;
+            }
+
+            // 计算移动距离
+            var distance = curVerticalSpeed * Time.deltaTime;
+            if (distance == 0)
+            {
+                return;
+            }
+
+            // 调整位置
+            var transformLocalPosition = gameObject.transform.localPosition;
+            transformLocalPosition.y += distance;
+            gameObject.transform.localPosition = transformLocalPosition;
+        }
+
         /// <summary>
         /// 水平移动
         /// </summary>
-        private void HorMove()
+        private void HorizontalMove()
         {
             // 更新当前速度
-            curHorSpeed += horAccelerate * Time.deltaTime;
+            curHorizontalSpeed += horAccelerate * Time.deltaTime;
 
-            // 计算移动举例
-            var distance = curHorSpeed / 2 * Time.deltaTime;
+            // 计算移动距离
+            var distance = curHorizontalSpeed * Time.deltaTime;
             if (distance == 0)
             {
                 return;
@@ -118,7 +194,7 @@ namespace Script.Object
             if (transformLocalPosition.x <= -Screen.width / 2 + configPlayer.balloonWidth / 2)
             {
                 // 走到头，速度归0
-                curHorSpeed = 0;
+                curHorizontalSpeed = 0;
                 transformLocalPosition.x = -Screen.width / 2 + configPlayer.balloonWidth / 2;
             }
 
@@ -126,7 +202,7 @@ namespace Script.Object
             if (transformLocalPosition.x >= Screen.width / 2 - configPlayer.balloonWidth / 2)
             {
                 // 走到头，速度归0
-                curHorSpeed = 0;
+                curHorizontalSpeed = 0;
                 transformLocalPosition.x = Screen.width / 2 - configPlayer.balloonWidth / 2;
             }
 

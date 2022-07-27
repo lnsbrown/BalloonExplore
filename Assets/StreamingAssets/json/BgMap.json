@@ -1,5 +1,5 @@
 ﻿{
-  "moveSpeed": 500,
-  "startAccSpeed": 50,
+  "moveSpeed": 300,
+  "startAccSpeed": 300,
   "stopAccSpeed": -50
 }

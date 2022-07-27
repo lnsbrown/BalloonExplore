@@ -46,6 +46,11 @@ namespace Script
                 // 抬起→
                 playerUnit.operateRight = false;
             }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // 开始
+                gameScene.Start();
+            }
         }
 
         public InputManager(ManagerType managerType) : base(managerType)

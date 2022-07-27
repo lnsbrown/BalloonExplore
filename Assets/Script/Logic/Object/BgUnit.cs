@@ -13,7 +13,7 @@ namespace Script.Object
         private ConfigBgMap configBgMap;
 
         // 移动状态
-        private volatile StateEnum stateEnum = StateEnum.STOPPED;
+        private volatile StateEnum stateEnum;
 
         // 进入状态时间
         private long enterStateTime;
@@ -85,8 +85,7 @@ namespace Script.Object
                 mapObject.transform.localPosition = transformLocalPosition;
             }
 
-            // TODO 后期改为通过输入切换状态
-            EnterState(StateEnum.STARTING);
+            EnterState(StateEnum.STOPPED);
         }
 
         /// <summary>

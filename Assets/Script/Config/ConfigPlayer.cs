@@ -16,6 +16,11 @@ namespace Script.Config
         public float balloonHoverHeight;
 
         /// <summary>
+        /// 气球飞行高度
+        /// </summary>
+        public float balloonFloatHeight;
+
+        /// <summary>
         /// 操作向左加速度
         /// </summary>
         public float operateLeftAccelerate;
@@ -26,8 +31,18 @@ namespace Script.Config
         public float operateRightAccelerate;
 
         /// <summary>
-        /// 阻碍加速度（模拟空气阻力）
+        /// 阻碍加速度（模拟横向空气阻力）
         /// </summary>
         public float blockAccelerate;
+
+        /// <summary>
+        /// 漂浮阻碍加速度（模拟加速到平稳飞行过程）
+        /// </summary>
+        public float blockFloatAccelerate;
+
+        /// <summary>
+        /// 初始漂浮速度
+        /// </summary>
+        public float initFloatSpeed;
     }
 }
