@@ -86,7 +86,7 @@ namespace Script.Object
 
             // TODO TEST CODE
             for (var i = 0; i < 10; i++)
-            {1
+            {
                 var obstacleUnit = this.scene.CreateUnit<ObstacleUnit>();
                 obstacleUnit.Init();
                 gameObject.AddComponent(obstacleUnit.gameObject.GetType());
