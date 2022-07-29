@@ -3,6 +3,7 @@ using Script.Config;
 using Script.Const;
 using Script.Enums;
 using Script.Manager;
+using Script.Scene;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Script.Object
 {
     public class PlayerUnit : GameUnit
     {
+
         private BalloonComponent balloonView;
 
         public ConfigPlayer configPlayer;
@@ -117,6 +119,7 @@ namespace Script.Object
                 if (curHorizontalSpeed == 0)
                 {
                     // 当前没速度，就保持静止不动
+                    horAccelerate = 0;
                     return;
                 }
 

@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using Script.Scene;
+using UnityEngine;
 
 namespace Script.Object
 {
     public abstract class GameUnit : ScriptableObject
     {
+        public BaseScene scene { set; get; }
+
         public int unitId { set; get; }
 
         /// <summary>
@@ -11,8 +14,10 @@ namespace Script.Object
         /// </summary>
         protected int unitSceneLayerIndex { get; private set; }
 
-        // 单位对象
-        protected GameObject gameObject;
+        /// <summary>
+        /// 单位对象
+        /// </summary>
+        public GameObject gameObject { get; protected set; }
 
         protected abstract void InitGameObject();
 

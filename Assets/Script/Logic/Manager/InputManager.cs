@@ -24,29 +24,29 @@ namespace Script
 
         private void ListenHorMoveInput()
         {
-            var playerUnit = gameScene.mainPlayer as PlayerUnit;
+            var playerUnit = gameScene.mainPlayer;
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 // 按下←
                 playerUnit.operateLeft = true;
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 // 按下→
                 playerUnit.operateRight = true;
             }
-            else if (Input.GetKeyUp(KeyCode.LeftArrow))
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
             {
                 // 抬起←
                 playerUnit.operateLeft = false;
             }
-            else if (Input.GetKeyUp(KeyCode.RightArrow))
+            if (Input.GetKeyUp(KeyCode.RightArrow))
             {
                 // 抬起→
                 playerUnit.operateRight = false;
             }
-            else if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 // 开始
                 gameScene.Start();

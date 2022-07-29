@@ -13,10 +13,14 @@ namespace Script.Config
         /// </summary>
         public int bgMap;
 
-
         /// <summary>
         /// 玩家层级
         /// </summary>
         public int player;
+
+        /// <summary>
+        /// 玩家层级
+        /// </summary>
+        public int obstacle;
     }
 }

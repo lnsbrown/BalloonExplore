@@ -20,14 +20,6 @@ namespace Script.Logic.Manager
             Debug.Log("UIManager Init");
         }
 
-        public void InitUnit()
-        {
-            foreach (var unit in unitDic.Values)
-            {
-                unit.Init();
-            }
-        }
-
         public void UpdateUnit()
         {
             foreach (var unit in unitDic.Values)
@@ -59,6 +51,16 @@ namespace Script.Logic.Manager
             var unitId = IdCreator.GetInstance().Incr(IdIncreaseType.UNIT);
             gameUnit.unitId = unitId;
             unitDic.Add(unitId, gameUnit);
+        }
+
+        /// <summary>
+        /// 获取Unit
+        /// </summary>
+        /// <param name="unitId"></param>
+        /// <returns></returns>
+        public GameUnit GetUnit(int unitId)
+        {
+            return unitDic[unitId];
         }
 
         public void ClearAllUnit()

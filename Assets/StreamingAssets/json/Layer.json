@@ -1,4 +1,5 @@
 ﻿{
   "bgMap": 100,
-  "player": 0
+  "player": 0,
+  "obstacle": 0
 }

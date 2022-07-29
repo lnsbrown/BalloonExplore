@@ -6,5 +6,7 @@
         public const string BG_MAP = "Assets/Prefab/bgMap.prefab";
         // 玩家预制体
         public const string PLAYER = "Assets/Prefab/player.prefab";
+        // 障碍物预制体
+        public const string OBSTACLE = "Assets/Prefab/obstacale.prefab";
     }
 }
