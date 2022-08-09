@@ -43,6 +43,11 @@ namespace Script.Scene
         public void Update()
         {
             unitManager.UpdateUnit();
+            OnUpdate();
+        }
+
+        protected virtual void OnUpdate()
+        {
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Script.Config;
+﻿using System;
+using Script.Config;
 using Script.Const;
 using Script.Manager;
 using UnityEditor;
@@ -50,6 +51,11 @@ namespace Script.Object
             return Globals.configLayer.bgMap;
         }
 
+        public float GetMovingSpeed()
+        {
+            return configBgMap.moveSpeed;
+        }
+
         public override void Init()
         {
             base.Init();
@@ -82,14 +88,6 @@ namespace Script.Object
                 transformLocalPosition.y = Screen.height * index;
                 transformLocalPosition.z = unitSceneLayerIndex;
                 mapObject.transform.localPosition = transformLocalPosition;
-            }
-
-            // TODO TEST CODE
-            for (var i = 0; i < 10; i++)
-            {
-                var obstacleUnit = this.scene.CreateUnit<ObstacleUnit>();
-                obstacleUnit.Init();
-                gameObject.AddComponent(obstacleUnit.gameObject.GetType());
             }
 
             EnterState(StateEnum.STOPPED);

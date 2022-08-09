@@ -1,0 +1,6 @@
+﻿{
+  "obstacleMinSpace": 450,
+  "obstacleWidth": 100,
+  "obstacleHeight": 100,
+  "createInterval": 2000
+}

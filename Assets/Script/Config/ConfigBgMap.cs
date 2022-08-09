@@ -19,5 +19,10 @@ namespace Script.Config
         /// 
         /// </summary>
         public float stopAccSpeed;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public float obstacleMinSpace;
     }
 }

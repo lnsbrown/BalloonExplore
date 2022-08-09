@@ -5,6 +5,8 @@ namespace Script.Object
 {
     public abstract class GameUnit : ScriptableObject
     {
+        public bool needRemove;
+
         public BaseScene scene { set; get; }
 
         public int unitId { set; get; }
@@ -34,5 +36,11 @@ namespace Script.Object
         }
 
         public abstract void Update();
+
+        public virtual void OnRemove()
+        {
+            // 销毁对象
+            Destroy(gameObject);
+        }
     }
 }

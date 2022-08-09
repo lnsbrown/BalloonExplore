@@ -11,6 +11,8 @@ namespace Script.Logic.Manager
     {
         private readonly Dictionary<int, GameUnit> unitDic = new Dictionary<int, GameUnit>();
 
+        private List<GameUnit> removeList = new List<GameUnit>();
+
         public UnitManager(ManagerType managerType) : base(managerType)
         {
         }
@@ -24,7 +26,24 @@ namespace Script.Logic.Manager
         {
             foreach (var unit in unitDic.Values)
             {
+                if (unit.needRemove)
+                {
+                    removeList.Add(unit);
+                }
+
                 unit.Update();
+            }
+
+            // 移除列表
+            if (removeList.Count > 0)
+            {
+                foreach (var gameUnit in removeList)
+                {
+                    gameUnit.OnRemove();
+                    unitDic.Remove(gameUnit.unitId);
+                }
+
+                removeList.Clear();
             }
         }
 
