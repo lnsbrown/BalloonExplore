@@ -113,27 +113,27 @@ namespace Script.Scene
 
             var offsetX = -Screen.width / 2 + spaceOffset;
 
-            if (offsetX <= 0)
+            if (offsetX <= -Screen.width / 2)
             {
                 // 靠右障碍物
                 var posX = offsetX + spaceLength;
                 CreateOneObstacle(ObstacleUnit.Type.LEFT, posX, movingSpeed);
                 posX += configObstacle.obstacleWidth;
 
-                while (posX < Screen.width / 2)
+                while (posX < Screen.width / 2 + configObstacle.obstacleWidth)
                 {
                     CreateOneObstacle(ObstacleUnit.Type.CENTER, posX, movingSpeed);
                     posX += configObstacle.obstacleWidth;
                 }
             }
-            else if (offsetX > 0 && (offsetX + spaceLength) >= Screen.width / 2)
+            else if (offsetX > -Screen.width / 2 && (offsetX + spaceLength) >= Screen.width / 2)
             {
                 // 靠左障碍物
                 var posX = offsetX;
                 CreateOneObstacle(ObstacleUnit.Type.RIGHT, posX, movingSpeed);
                 posX -= configObstacle.obstacleWidth;
 
-                while (posX > 0)
+                while (posX > -Screen.width / 2 - configObstacle.obstacleWidth)
                 {
                     CreateOneObstacle(ObstacleUnit.Type.CENTER, posX, movingSpeed);
                     posX -= configObstacle.obstacleWidth;
@@ -147,7 +147,7 @@ namespace Script.Scene
                 CreateOneObstacle(ObstacleUnit.Type.RIGHT, posX, movingSpeed);
                 posX -= configObstacle.obstacleWidth;
 
-                while (posX > 0)
+                while (posX > -Screen.width / 2 - configObstacle.obstacleWidth)
                 {
                     CreateOneObstacle(ObstacleUnit.Type.CENTER, posX, movingSpeed);
                     posX -= configObstacle.obstacleWidth;
@@ -158,7 +158,7 @@ namespace Script.Scene
                 CreateOneObstacle(ObstacleUnit.Type.LEFT, posX, movingSpeed);
                 posX += configObstacle.obstacleWidth;
 
-                while (posX < Screen.width / 2)
+                while (posX < Screen.width / 2 + configObstacle.obstacleWidth)
                 {
                     CreateOneObstacle(ObstacleUnit.Type.CENTER, posX, movingSpeed);
                     posX += configObstacle.obstacleWidth;
