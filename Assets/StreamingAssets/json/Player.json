@@ -1,0 +1,10 @@
+﻿{
+  "balloonWidth": 400,
+  "balloonHoverHeight": 100,
+  "balloonFloatHeight": 500,
+  "operateLeftAccelerate": -1000,
+  "operateRightAccelerate": 1000,
+  "blockAccelerate": 500,
+  "initFloatSpeed": 800,
+  "blockFloatAccelerate": -500
+}

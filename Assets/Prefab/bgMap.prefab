@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4922443650210683015}
   m_Layer: 0
   m_Name: map1
-  m_TagString: Untagged
+  m_TagString: map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1484734182404439800}
   m_Layer: 0
   m_Name: map2
-  m_TagString: Untagged
+  m_TagString: map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
