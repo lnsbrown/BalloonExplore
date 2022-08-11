@@ -182,9 +182,9 @@ namespace Script.Scene
             // 大小缩放
             var transformLocalScale = obstacleUnit.gameObject.transform.localScale;
             transformLocalScale.x = configObstacle.obstacleWidth /
-                                    obstacleUnit.gameObject.GetComponent<Renderer>().bounds.size.x;
+                                    obstacleUnit.gameObject.GetComponent<SpriteRenderer>().size.x;
             transformLocalScale.y = configObstacle.obstacleHeight /
-                                    obstacleUnit.gameObject.GetComponent<Renderer>().bounds.size.y;
+                                    obstacleUnit.gameObject.GetComponent<SpriteRenderer>().size.y;
 
             obstacleUnit.gameObject.transform.position = transformPosition;
         }

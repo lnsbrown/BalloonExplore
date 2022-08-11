@@ -73,21 +73,20 @@ namespace Script.Object
                     watchMapObjectIndex = index;
                 }
 
-                var renderer = mapObject.GetComponentInChildren<Renderer>();
-
-                var scaleX = Screen.width / 2f / renderer.bounds.size.x * 1f;
-                var scaleY = Screen.height / 2f / renderer.bounds.size.y * 1f;
+                var sprite = mapObject.GetComponentInChildren<SpriteRenderer>();
+                var scaleX = Screen.width / sprite.size.x * 1f;
+                var scaleY = Screen.height / sprite.size.y * 1f;
                 // 调整缩放适配屏幕
                 var transformLocalScale = mapObject.transform.localScale;
                 transformLocalScale.x = scaleX;
                 transformLocalScale.y = scaleY;
                 mapObject.transform.localScale = transformLocalScale;
                 // 调整位置
-                var transformLocalPosition = mapObject.transform.localPosition;
+                var transformLocalPosition = mapObject.transform.position;
                 transformLocalPosition.x = 0;
                 transformLocalPosition.y = Screen.height * index;
                 transformLocalPosition.z = unitSceneLayerIndex;
-                mapObject.transform.localPosition = transformLocalPosition;
+                mapObject.transform.position = transformLocalPosition;
             }
 
             EnterState(StateEnum.STOPPED);
@@ -130,11 +129,12 @@ namespace Script.Object
                 MoveMap(moveDistance, mapObject);
             }
 
+            var diffVal = GetMapOverDownDiffVal();
             // 是否移动到边界
-            if (IsMapOverDown())
+            if (diffVal >= 0)
             {
                 // 交换地图位置
-                SwapMap();
+                SwapMap(diffVal);
             }
         }
 
@@ -173,20 +173,29 @@ namespace Script.Object
             }
         }
 
-        // 地图是否超出下边界
-        private bool IsMapOverDown()
+        /// <summary>
+        /// 地图是否超出下边界 
+        /// </summary>
+        /// <returns>-1:没有超出边界, >=0:超出的误差值</returns>
+        private float GetMapOverDownDiffVal()
         {
+            if (watchMapObject.transform.localPosition.y > -Screen.height)
+            {
+                // 没有超出边界返回负数
+                return -1;
+            }
+
             // y坐标小于等于屏幕，则认为超出边界
-            return watchMapObject.transform.localPosition.y <= -Screen.height;
+            return -Screen.height - watchMapObject.transform.localPosition.y;
         }
 
-        private void SwapMap()
+        private void SwapMap(float diffVal)
         {
             int allLen = this.mapObjects.Length;
 
             // 移动地图
             var transformLocalPosition = watchMapObject.transform.localPosition;
-            transformLocalPosition.y = Screen.height * (allLen - 1);
+            transformLocalPosition.y = Screen.height * (allLen - 1) - diffVal;
             watchMapObject.transform.localPosition = transformLocalPosition;
 
             // 下一个观察的地图对象

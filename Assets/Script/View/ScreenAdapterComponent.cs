@@ -25,7 +25,7 @@ public class ScreenAdapterComponent : MonoBehaviour
 
             float width = Screen.width;
             float height = Screen.height;
-            float ratio = width / height;
+            var ratio = width / height;
             if (ratio > DEFAULT_RATIO)
             {
                 if (m_Camera.orthographicSize != DEFAULT_SIZE)

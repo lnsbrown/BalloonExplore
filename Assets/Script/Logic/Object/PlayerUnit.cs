@@ -84,11 +84,11 @@ namespace Script.Object
             // 气球的显示层
             balloonView = gameObject.GetComponentInChildren<BalloonComponent>();
 
-            var renderer = gameObject.GetComponentInChildren<Renderer>();
+            var renderer = gameObject.GetComponentInChildren<SpriteRenderer>();
 
             var balloonWidth = configPlayer.balloonWidth;
-            var scale = balloonWidth / renderer.bounds.size.x * 1f;
-            var balloonHeight = renderer.bounds.size.x * 1f * scale;
+            var scale = balloonWidth / renderer.size.x * 1f;
+            var balloonHeight = renderer.size.x * 1f * scale;
             // 调整缩放适配屏幕
             var transformLocalScale = gameObject.transform.localScale;
             transformLocalScale.x = scale;
