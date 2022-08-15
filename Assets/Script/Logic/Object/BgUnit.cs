@@ -41,6 +41,11 @@ namespace Script.Object
             STOPPED
         }
 
+        public bool isMoving()
+        {
+            return this.stateEnum == StateEnum.MOVING;
+        }
+
         protected override void InitGameObject()
         {
             gameObject = Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(PrefabDefine.BG_MAP));

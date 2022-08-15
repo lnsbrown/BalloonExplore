@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2548282121440485409}
   - component: {fileID: 2548282121440485408}
+  - component: {fileID: 4601258845366017532}
   m_Layer: 0
   m_Name: balloon
   m_TagString: balloon
@@ -82,6 +83,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4601258845366017532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2548282121440485410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f36547fdc2fd14fbe109e6a49623f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skins: []
+  balloonRender: {fileID: 0}
 --- !u!1 &2548282122561710973
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +107,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2548282122561710971}
   - component: {fileID: 5573099622865950031}
-  - component: {fileID: 8129158931638925976}
+  - component: {fileID: 6268098942292027752}
+  - component: {fileID: 5170335914714101700}
   m_Layer: 0
   m_Name: player
   m_TagString: player
@@ -125,7 +141,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.08238351, y: 0.21053517}
@@ -141,7 +157,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.629361, y: 3.3982728}
   m_EdgeRadius: 0
---- !u!50 &8129158931638925976
+--- !u!50 &6268098942292027752
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -149,16 +165,28 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2548282122561710973}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5170335914714101700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2548282122561710973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62530587297e14146814a0d1312ab0f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

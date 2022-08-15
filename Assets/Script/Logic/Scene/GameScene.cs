@@ -80,14 +80,17 @@ namespace Script.Scene
         {
             base.OnUpdate();
 
-            var now = Globals.Now();
-            if (now >= nextCreateObstacleTime)
+            if (this.gameState == GameState.Gaming && this.bgUnit.isMoving())
             {
-                nextCreateObstacleTime = now + configObstacle.createInterval;
-                // 随机创建
-                var randomSpaceLength = random.Next(50, 600);
-                var randomSpaceOffset = random.Next(0, 600);
-                CreateObstacles(randomSpaceLength, randomSpaceOffset, bgUnit.GetMovingSpeed());
+                var now = Globals.Now();
+                if (now >= nextCreateObstacleTime)
+                {
+                    nextCreateObstacleTime = now + configObstacle.createInterval;
+                    // 随机创建
+                    var randomSpaceLength = random.Next(400, 2000);
+                    var randomSpaceOffset = random.Next(0, 2000);
+                    CreateObstacles(randomSpaceLength, randomSpaceOffset, bgUnit.GetMovingSpeed());
+                }
             }
         }
 
